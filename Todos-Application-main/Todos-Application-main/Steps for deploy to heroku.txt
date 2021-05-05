@@ -1,0 +1,48 @@
+Steps for Heroku
+ - register
+ - download heroku cli
+ - check if heroku cli is installed: heroku -v
+ - login into heroku from cli: heroku login (browser redirect)
+ 
+ ----- Git
+ - check for ssh keys git bash: ls -a -l ~/.ssh (may fail if no folder) 
+ - generate ssh keys: ssh-keygen -t rsa -b 4096 -C "<email_address>" continue with default on all promps
+ - check for ssh keys git bash: ls -a -l ~/.ssh (should be showing two files id_rsa, id_rsa.pub)
+ - start ssh agent: eval $(ssh-agent -s) (this will print the pid of the process, for mac users need to wrap the call in "$(ssh-agent -s)")
+ - add keys to the agent ssh-add -K ~/.ssh/id_rsa (showd show identity added...)
+ - goto github and create a repository
+ - make a copy of the project into new directory
+ - git init, git add, git commit
+ - git remote add origin git@github.com:<username>/<repository_name>.git
+ - setup ssh: goto profile -> settings -> ssh and gpg keys | enter title and the content of id_rsa.pub (cat ~/ssh/id_rsa.pub)
+ - test the ssh keys ssh -T git@github (Windows users use git bash)
+ - git push -u origin main
+
+ ----- Atlas
+ - Goto google mongo db atlas
+ - sign in with google
+ - fill organization and project name 
+ - free plan
+ - aws with au-central-1
+ - go to database access: create user
+ - white list the ip for connection
+ - go back to cluster and click connect button and get the string
+ - go to ip and add ip addresses
+ - connection string: mongodb+srv://admin:admin@cluster0.3r5ou.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+ - add all ip so they can acces the cluster but with 1 day expiration
+
+ ----- Heroku
+ - setup ssh-public: heroku keys:add (should find the above files) answer with Y
+ - create application: heroku create ivelin-todo-application (unique across all heroku)
+ 	* should output two urls: first is for the address of the application and the second is for the repository to which we need to push the code for depoloy
+
+ - setup the package.json: scripts add "start": "node/index.js"
+ - git status
+ - git add .
+ - git commit -m "<message>"
+ - git push
+ - git remote: list all remotes should be two origin and heroku 
+ - git push heroku master: should push the code to heroku and start the server
+ - get env var for heroku: heroku config 
+ - get specific env var from heroku: heroku config:get <ENV_VAR>
+ - set specific env var to heroku: heroku config:set GITHUB_USERNAME=joesmith

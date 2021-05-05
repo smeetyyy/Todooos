@@ -1,0 +1,24 @@
+0 ) cd C:\<path_to_folder>\Todos\
+1 ) docker build -t todo-app .
+
+2 ) docker images
+    REPOSIROTY TAG ID CREATED
+3 ) docker ps 
+    ID RECPOST/TAG STARTD RUNNIG ???
+4 ) docker run -p 5551:3000 todo-app
+
+-- Docker compose run
+0 ) cd C:\<path_to_folder>\Todos\
+1 ) docker-compose build -q
+2 ) docker-compose up -d
+3 ) docker-compose down
+
+// DELETE IMAGE
+docker images
+docker rmi <IMAGE_ID> first 3-4-5-6-... chars from id is enaught
+
+docker ps
+docker stop <CONTAINER_ID>  first 3-4-5-6-... chars from id is enaught
+
+-- References:
+https://docs.docker.com/engine/reference
